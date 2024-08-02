@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 22:04:07 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/08/01 18:22:44 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/08/02 14:54:55 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,7 @@ void	exit_shell(t_shell *shell, t_arg *status, int mode)
 		if (value == 255)
 			(ft_malloc(0, -4), exit(255));
 		if (status->next)
-		{
-			error_status_update("minishell: exit:\
- too many arguments\n", shell, 1);
-			return ;
-		}
+			return (error_status_update(EXCESS_ARGS, shell, 1));
 		ft_malloc(0, -4);
 		if (value == 258)
 			value = 2;

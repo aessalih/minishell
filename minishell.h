@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 16:18:13 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/08/02 14:23:20 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/08/02 15:16:39 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 		No such file or directory\n"
 # define EXPORT_ERR "export: not a valid identifier\n"
 # define UNSET_ERR "minishell: unset: not a valid identifier\n"
+# define EXCESS_ARGS "minishell: exit: too many arguments\n"
 
 typedef struct s_arg
 {
@@ -315,5 +316,6 @@ int			other_cases(char *cmd_path, t_shell *shell);
 int			is_file(char *path, t_shell *shell);
 void		reorder_args(t_shell *shell);
 int			is_empty(char *s);
-int			is_positive(char *s);
+int			is_positive(unsigned char *s);
+void		update_sign(unsigned char **s, int *sign);
 #endif

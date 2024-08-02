@@ -1,5 +1,5 @@
 CC= cc
-Flags= 
+Flags= -Wall -Werror -Wall
 
 SRC= ./external_functions/ft_free.c ./external_functions/ft_split.c ./parsing/ft_parsing.c ./parsing/divide_cmd.c parsing/ft_syntax.c parsing/heredoc_expand.c ./external_functions/ft_strchr.c \
 	./external_functions/ft_lst_add_back.c ./external_functions/ft_lstnew.c ./parsing/ft_split_cmd.c ./parsing/ft_addspace.c \
@@ -25,7 +25,7 @@ READLINE= $(shell brew --prefix readline)
 all: $(NAME)
 
 $(NAME): $(O_SRC)
-	$(CC) $(Flags) -g -lreadline -L $(READLINE)/lib $(O_SRC) -o $(NAME)
+	$(CC) $(Flags) -fsanitize=address -g -lreadline -L $(READLINE)/lib $(O_SRC) -o $(NAME)
 
 
 clean:

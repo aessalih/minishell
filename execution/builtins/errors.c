@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 17:08:03 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/08/02 14:11:09 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/08/02 14:50:50 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ void	fork_error(t_pipex *pipex, t_shell *shell, int i)
 
 void	error_for_executables(char *cmd_name, t_shell *shell)
 {
-	if (ft_strchr(cmd_name, '/'))
+	if ((!ft_getenv("PATH", shell->env)
+			&& !shell->r_path) || ft_strchr(cmd_name, '/'))
 		error_arg_status_update(NO_FILE_DIR, cmd_name, shell, 127);
 	else
 		error_arg_status_update(NO_COMMAND, cmd_name, shell, 127);

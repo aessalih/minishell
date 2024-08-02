@@ -6,12 +6,11 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 15:41:49 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/08/01 18:22:09 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/08/02 15:16:00 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
 
 static unsigned char	*remove_spaces(unsigned char *s)
 {
@@ -22,11 +21,11 @@ static unsigned char	*remove_spaces(unsigned char *s)
 	return (s);
 }
 
-int	is_positive(char *s)
+int	is_positive(unsigned char *s)
 {
-	int neg;
+	int	neg;
 
-	if (ft_strchr(s, '+'))
+	if (ft_strchr((const char *)s, '+'))
 		return (1);
 	neg = 0;
 	s = remove_spaces(s);
@@ -90,15 +89,10 @@ int	ft_atoi(const char *str, int flag)
 	s = (unsigned char *)str;
 	result = 0;
 	sign = 1;
-	if (is_empty(str))
-		return(return_status(str, 0, 1, flag));
+	if (is_empty((char *)str))
+		return (return_status((char *)str, 0, 1, flag));
 	s = remove_spaces(s);
-	if (*s == '-' || *s == '+')
-	{
-		if (*s == '-')
-			sign *= -1;
-		s++;
-	}
+	update_sign(&s, &sign);
 	while (*s >= '0' && *s <= '9')
 	{
 		if (max_value_reached(result, (char *)s, 1, sign))
