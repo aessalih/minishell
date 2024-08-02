@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 15:56:27 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/31 21:06:15 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/08/01 17:27:09 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ int	list_len(char **list)
 
 void	update_list_value(char *data, char *old_list_value, char **new_environ)
 {
+	if (!ft_strchr(old_list_value, '='))
+		old_list_value = ft_strjoin(old_list_value, "=");
 	if (append_mode(data))
 		data = ft_strjoin(old_list_value,
 				ft_strchr_occurence(data, '=') + 1);

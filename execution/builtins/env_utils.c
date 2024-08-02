@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 16:18:48 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/31 21:50:21 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/08/02 14:20:51 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,13 @@ static char	*retrieve_value(t_shell *shell)
 	var = ft_getenv("SHLVL", shell->env);
 	if (!var)
 		return (NULL);
-	new_value = ft_atoi(var) + 1;
+	new_value = ft_atoi(var, 0) + 1;
 	if (new_value == 1000)
 		return (ft_strdup(""));
-	else if (new_value > 1000)
+	else if (new_value > 1000 || new_value == 256 && ft_strlen(var) > 4 && is_positive(var))
 		return (ft_itoa_v2(1));
+	else if (new_value <= 0 || new_value == 256 && ft_strlen(var) > 4 && !is_positive(var))
+		return (ft_itoa_v2(0));
 	else
 		return (ft_itoa_v2(new_value));
 }

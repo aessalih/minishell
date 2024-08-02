@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 21:45:04 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/31 21:51:01 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/08/01 16:57:47 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	update_underscore_var(t_arg *new_envpath, char *value)
 	(new_envpath)->arg = ft_strjoin("_=", value);
 }
 
-static int	is_empty(char *s)
+int	is_empty(char *s)
 {
 	int	i;
 

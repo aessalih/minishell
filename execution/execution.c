@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 18:57:57 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/31 21:06:32 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/08/01 17:08:48 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,8 @@ static void	run_options_no_path(t_shell *shell, char *command, int mode)
 		echo_message(shell->all_input->args, shell);
 	else if (!ft_strncmp(command, "exit", 5))
 		exit_shell(shell, shell->all_input->args, mode);
-	else if (*command == '/' || (access(command, F_OK) == 0))
-		execute_other_commands(shell, 1);
 	else
-	{
-		add_new_status(shell, 127);
-		printf(COMMAND_NOT_FOUND, command);
-	}
+		execute_other_commands(shell, 1);
 }
 
 static void	run_options(t_shell *shell, char *command, int mode)

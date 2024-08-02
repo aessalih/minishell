@@ -1,17 +1,5 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/07/31 20:57:20 by shamdoun          #+#    #+#              #
-#    Updated: 2024/08/01 07:49:13 by aessalih         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 CC= cc
-Flags= -Wall -Wextra -Werror -g
+Flags= 
 
 SRC= ./external_functions/ft_free.c ./external_functions/ft_split.c ./parsing/ft_parsing.c ./parsing/divide_cmd.c parsing/ft_syntax.c parsing/heredoc_expand.c ./external_functions/ft_strchr.c \
 	./external_functions/ft_lst_add_back.c ./external_functions/ft_lstnew.c ./parsing/ft_split_cmd.c ./parsing/ft_addspace.c \
@@ -29,14 +17,16 @@ SRC= ./external_functions/ft_free.c ./external_functions/ft_split.c ./parsing/ft
 O_SRC=$(SRC:.c=.o)
 
 NAME= minishell
+READLINE= $(shell brew --prefix readline)
 
-%.o: %.c minishell.h
-	$(CC) $(Flags) -c $< -o $@
+%.o: %.c
+	$(CC) $(Flags) -c -g $< -o $@ -I $(READLINE)/include
 
 all: $(NAME)
 
 $(NAME): $(O_SRC)
-	$(CC) $(Flags) -lreadline $(O_SRC) -o $(NAME)
+	$(CC) $(Flags) -g -lreadline -L $(READLINE)/lib $(O_SRC) -o $(NAME)
+
 
 clean:
 	rm -f $(O_SRC)

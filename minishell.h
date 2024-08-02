@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 16:18:13 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/31 22:00:10 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/08/01 18:23:10 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,7 @@ char		*ft_strdup(const char *s1);
 char		**ft_split_1(char const *s, char c);
 void		*ft_memmove(void *dst, const void *src, size_t len );
 void		*ft_memcpy(void *dst, const void *src, size_t n);
-int			ft_atoi(const char *str);
+int			ft_atoi(const char *str, int flag);
 t_file		*ft_lstnew_file(char *file_name, int type, char *delimeter);
 void		ft_free(char **ptr, int last);
 void		free_fail(t_parse_list **list);
@@ -314,5 +314,6 @@ int			is_directory(char *path, t_shell *shell);
 int			other_cases(char *cmd_path, t_shell *shell);
 int			is_file(char *path, t_shell *shell);
 void		reorder_args(t_shell *shell);
-
+int			is_empty(char *s);
+int			is_positive(char *s);
 #endif

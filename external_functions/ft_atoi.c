@@ -6,11 +6,12 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 15:41:49 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/31 21:23:11 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/08/01 18:22:09 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
 
 static unsigned char	*remove_spaces(unsigned char *s)
 {
@@ -21,20 +22,45 @@ static unsigned char	*remove_spaces(unsigned char *s)
 	return (s);
 }
 
-static int	return_status(char *s, int value, int flag)
+int	is_positive(char *s)
+{
+	int neg;
+
+	if (ft_strchr(s, '+'))
+		return (1);
+	neg = 0;
+	s = remove_spaces(s);
+	while (*s && (*s == '-' || *s == '+'))
+	{
+		if (*s == '-')
+			neg++;
+		s++;
+	}
+	if (neg > 1 || !neg)
+		return (1);
+	return (0);
+}
+
+static int	return_status(char *s, int value, int flag, int p_f)
 {
 	if (flag > 0)
 	{
-		ft_putstr_fd("minishell: exit: ", 2);
-		ft_putstr_fd(s, 2);
-		ft_putendl_fd(": numeric argument required", 2);
+		if (p_f)
+		{
+			ft_putstr_fd("minishell: exit: ", 2);
+			ft_putstr_fd(s, 2);
+			ft_putendl_fd(": numeric argument required", 2);
+		}
 		return (255);
 	}
 	if (*s)
 	{
-		ft_putstr_fd("minishell: exit: ", 2);
-		ft_putstr_fd(s, 2);
-		ft_putendl_fd(": numeric argument required", 2);
+		if (p_f)
+		{
+			ft_putstr_fd("minishell: exit: ", 2);
+			ft_putstr_fd(s, 2);
+			ft_putendl_fd(": numeric argument required", 2);
+		}
 		return (255);
 	}
 	return (value);
@@ -55,7 +81,7 @@ static int	max_value_reached(long result, char *s, int flag, int sign)
 	return (0);
 }
 
-int	ft_atoi(const char *str)
+int	ft_atoi(const char *str, int flag)
 {
 	int				sign;
 	long			result;
@@ -64,6 +90,8 @@ int	ft_atoi(const char *str)
 	s = (unsigned char *)str;
 	result = 0;
 	sign = 1;
+	if (is_empty(str))
+		return(return_status(str, 0, 1, flag));
 	s = remove_spaces(s);
 	if (*s == '-' || *s == '+')
 	{
@@ -76,10 +104,10 @@ int	ft_atoi(const char *str)
 		if (max_value_reached(result, (char *)s, 1, sign))
 			return (0);
 		if (max_value_reached(result, (char *)s, 0, sign))
-			return (return_status((char *)s, 0, 1));
+			return (return_status((char *)s, 0, 1, flag));
 		result = (result * 10) + (*s - '0');
 		s++;
 	}
 	s = remove_spaces(s);
-	return (return_status((char *)s, (int)result * sign, 0));
+	return (return_status((char *)s, (int)result * sign, 0, flag));
 }

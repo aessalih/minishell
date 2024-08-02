@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 22:04:07 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/31 21:06:21 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/08/01 18:22:44 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,11 @@ void	exit_shell(t_shell *shell, t_arg *status, int mode)
 
 	if (mode)
 		write(1, "exit\n", 5);
+	while (status && !status->arg)
+		status = status->next;
 	if (status)
 	{
-		value = ft_atoi(status->arg);
+		value = ft_atoi(status->arg, 1);
 		if (value == 255)
 			(ft_malloc(0, -4), exit(255));
 		if (status->next)
