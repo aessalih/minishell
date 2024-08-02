@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_bin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 15:19:20 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/08/01 15:39:40 by aessalih         ###   ########.fr       */
+/*   Updated: 2024/08/02 14:10:54 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ static void	run_binary(char *cmd_path,
 			(signal(SIGINT, SIG_IGN), signal(SIGQUIT, SIG_IGN));
 		child = fork();
 		if (child < 0)
-			fork_error();
+			ft_putendl_fd("bash: fork: Resource temporarily unavailable", 2);
 		if (child == 0)
 			run_child(cmd_path, args_list, shell);
 		waitpid(child, &status, 0);
