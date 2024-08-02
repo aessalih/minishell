@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:12:16 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/31 21:08:48 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/08/02 13:06:52 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,9 @@ void	pipex(t_shell *shell, int mode)
 		child = fork();
 		if (child < 0)
 		{
-			add_new_status(shell, 1);
-			return (fork_error());
+			release_fds(pipex, shell, child, i);
+			fork_error(pipex, shell, i);
+			break ;
 		}
 		if (!child)
 			run_child(shell, pipex, i, mode);

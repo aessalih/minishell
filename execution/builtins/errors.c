@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 17:08:03 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/28 21:54:20 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/08/02 14:11:09 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,18 @@ void	error_arg_status_update(char *error, char *arg, t_shell *shell, int s)
 	add_new_status(shell, s);
 }
 
-void	fork_error(void)
+void	fork_error(t_pipex *pipex, t_shell *shell, int i)
 {
-	ft_putendl_fd("fork has failed!", 2);
+	int	j;
+
+	ft_putendl_fd("bash: fork: Resource temporarily unavailable", 2);
+	j = 0;
+	while (j < i)
+	{
+		kill(pipex->processes[j], 9);
+		j++;
+	}
+	add_new_status(shell, 1);
 	return ;
 }
 

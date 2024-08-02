@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 16:18:13 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/31 22:00:10 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/08/02 12:57:40 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -300,7 +300,7 @@ void		update_split_list(char ***args_list, char *data);
 void		error_arg_status_update(char *error,
 				char *arg, t_shell *shell, int s);
 void		ft_reset_terminal(int flag);
-void		fork_error(void);
+void		fork_error(t_pipex *pipex, t_shell *shell, int i);
 int			incorrect_syntax(char *s);
 int			bin_exists(char *s);
 char		*cut_exp(char *str);
