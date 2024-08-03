@@ -6,7 +6,7 @@
 /*   By: shamdoun <shamdoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 15:39:56 by shamdoun          #+#    #+#             */
-/*   Updated: 2024/07/31 21:55:05 by shamdoun         ###   ########.fr       */
+/*   Updated: 2024/08/03 20:22:19 by shamdoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,11 @@ int	run_special_cases(t_shell *shell, char *command)
 	{
 		ft_putendl_fd("minishell: .: No such file or directoty", 2);
 		add_new_status(shell, 1);
+		return (1);
+	}
+	else if (!ft_strncmp(command, "..", 2))
+	{
+		error_arg_status_update(NO_COMMAND, command, shell, 127);
 		return (1);
 	}
 	return (0);
