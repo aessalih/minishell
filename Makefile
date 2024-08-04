@@ -17,15 +17,14 @@ SRC= ./external_functions/ft_free.c ./external_functions/ft_split.c ./parsing/ft
 O_SRC=$(SRC:.c=.o)
 
 NAME= minishell
-READLINE= $(shell brew --prefix readline)
 
-%.o: %.c
-	$(CC) $(Flags) -c -g $< -o $@ -I $(READLINE)/include
+%.o: %.c minishell.h
+	$(CC) $(Flags) -c $< -o $@
 
 all: $(NAME)
 
 $(NAME): $(O_SRC)
-	$(CC) $(Flags) -fsanitize=address -g -lreadline -L $(READLINE)/lib $(O_SRC) -o $(NAME)
+	$(CC) $(Flags) -lreadline $(O_SRC) -o $(NAME)
 
 
 clean:

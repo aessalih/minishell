@@ -6,7 +6,7 @@
 /*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 11:14:07 by aessalih          #+#    #+#             */
-/*   Updated: 2024/08/01 15:47:12 by aessalih         ###   ########.fr       */
+/*   Updated: 2024/08/04 14:59:53 by aessalih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ void	ft_createfile(char *name, t_shell *shell, char *str, t_file **new)
 	else
 		ptr = name;
 	s = remove_quotes(ptr);
-	if (!strncmp(str, "<", 2))
+	if (!ft_strncmp(str, "<", 2))
 		(*new) = ft_lstnew_file(s, 3, NULL);
-	else if (!strncmp(str, ">", 2))
+	else if (!ft_strncmp(str, ">", 2))
 		(*new) = ft_lstnew_file(s, 1, NULL);
-	else if (!strncmp(str, ">>", 3))
+	else if (!ft_strncmp(str, ">>", 3))
 		(*new) = ft_lstnew_file(s, 2, NULL);
 }

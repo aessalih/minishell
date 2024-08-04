@@ -6,7 +6,7 @@
 /*   By: aessalih <aessalih@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 11:15:58 by aessalih          #+#    #+#             */
-/*   Updated: 2024/08/01 15:49:00 by aessalih         ###   ########.fr       */
+/*   Updated: 2024/08/04 14:58:44 by aessalih         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ static void	put_redirection(t_input *nw, char *str, char *name, t_shell *shell)
 	char	*s;
 
 	(1) && (new = NULL, ptr = NULL, s = NULL, t_f = 0);
-	if (!strncmp(str, "<", 2) || !strncmp(str, ">", 2)
-		|| !strncmp(str, ">>", 3))
+	if (!ft_strncmp(str, "<", 2) || !ft_strncmp(str, ">", 2)
+		|| !ft_strncmp(str, ">>", 3))
 	{
 		ft_createfile(name, shell, str, &new);
 	}
-	else if (!strncmp(str, "<<", 3))
+	else if (!ft_strncmp(str, "<<", 3))
 	{
 		ptr = cut_exp(name);
 		ptr = remove_quotes(ptr);
@@ -69,13 +69,13 @@ static t_arg	*put_arg(t_arg *arguments, char *str, t_shell *shell)
 
 static int	check_last(char *str)
 {
-	if (!strncmp(str, ">", 2))
+	if (!ft_strncmp(str, ">", 2))
 		return (0);
-	else if (!strncmp(str, "<", 2))
+	else if (!ft_strncmp(str, "<", 2))
 		return (0);
-	else if (!strncmp(str, ">>", 3))
+	else if (!ft_strncmp(str, ">>", 3))
 		return (0);
-	else if (!strncmp(str, "<<", 3))
+	else if (!ft_strncmp(str, "<<", 3))
 		return (0);
 	return (1);
 }
