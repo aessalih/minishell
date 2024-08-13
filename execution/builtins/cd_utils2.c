@@ -33,7 +33,7 @@ int	check_path(t_arg *path, char *cwd)
 		return (1);
 	if (ft_same_value(path->arg, cwd))
 	{
-		strcpy(cwd, path->arg);
+		ft_strcpy(cwd, path->arg);
 		return (1);
 	}
 	return (0);

@@ -30,7 +30,7 @@ static int	check_cmds(t_commands *cmd)
 				&& str[i + 1] && (!ft_strncmp(str[i + 1],
 						"<<", ft_strlen(str[i + 1]))
 					|| !ft_strncmp(str[i + 1], ">>", ft_strlen(str[i + 1]))))
-				return (1);
+				return (free_list(cmd), ft_free_split(str), 1);
 			i++;
 		}
 		ft_free_split(str);
